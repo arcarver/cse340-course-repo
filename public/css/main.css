@@ -216,3 +216,11 @@ footer {
         font-size: 1.35rem;
     }
 }
+/* Update your navigation links to change text color on hover/focus */
+nav a:hover,
+nav a:focus-visible {
+    color: var(--primary-hover);
+    /* Changes text from muted blue to off-black */
+    background-color: #f1f5f9;
+    /* Keeps the soft background highlight */
+}
