@@ -1,31 +1,218 @@
+/* ==========================================================================
+   1. Design System Tokens & Typography (Premium Upgrade)
+   ========================================================================== */
+@import url('https://googleapis.com');
+
+:root {
+    /* Sophisticated, calm slate/blue professional palette */
+    --primary: #2563eb;
+    /* Vibrant slate blue for active links/hovers */
+    --primary-dark: #1d4ed8;
+    /* Deep interactive accent tone */
+    --text-main: #1f2937;
+    /* Clean charcoal off-black for ultra-high readability */
+    --text-muted: #4b5563;
+    /* Elegant slate-grey for descriptions and subtitle tags */
+    --bg-page: #f1f5f9;
+    /* Soft, premium neutral slate-light canvas background */
+    --bg-card: #ffffff;
+    /* Pure white layout blocks */
+    --border-color: #e2e8f0;
+    /* Muted framing borders */
+
+    /* Global layout settings */
+    --max-width: 1100px;
+    --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --radius-lg: 16px;
+    --radius-md: 10px;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 15px -3px rgba(15, 23, 42, 0.04), 0 4px 6px -4px rgba(15, 23, 42, 0.04);
+}
+
+/* ==========================================================================
+   2. Core Layout Setup (Mobile First Architecture)
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 html,
 body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+    background-color: var(--bg-page);
+    font-family: var(--font-stack);
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
 }
 
 body {
+    padding: 16px;
+}
+
+/* ==========================================================================
+   3. Modern Navigation Menu Bar
+   ========================================================================== */
+nav {
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto 20px auto;
+    background: var(--bg-card);
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-sm);
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-weight: 500;
+    font-size: 1rem;
+    display: block;
+    padding: 0.6rem 1rem;
+    border-radius: 6px;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Elegant, soft highlight on link hover */
+nav a:hover {
+    color: var(--primary);
+    background-color: #f8fafc;
+}
+
+/* ==========================================================================
+   4. Main Content Grid & Typography
+   ========================================================================== */
+main {
+    max-width: var(--max-width);
+    width: 100%;
+    margin: 0 auto;
+    flex: 1;
+    /* Automatically keeps footer glued to the absolute page floor */
+    background: var(--bg-card);
+    padding: 2rem 1.5rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow-md);
+}
+
+h1 {
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: #0f172a;
+    /* Deep deep navy-slate */
+    letter-spacing: -0.025em;
+    margin-bottom: 0.75rem;
+}
+
+h2 {
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 1.75rem;
+}
+
+p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 2.25rem;
+}
+
+/* Fluid imagery system */
+.main-logo {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+/* ==========================================================================
+   5. Content Grid System (For lists of Organizations or Projects)
+   ========================================================================== */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+    list-style: none;
+    margin-top: 2rem;
+}
+
+.grid-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.grid-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 20px -3px rgba(15, 23, 42, 0.08);
+}
+
+/* ==========================================================================
+   6. Footer Execution
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 2rem 0 1rem 0;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   7. Advanced Responsive Transitions (For Desktops/Monitors)
+   ========================================================================== */
+@media (min-width: 768px) {
+    body {
+        padding: 40px 24px;
+    }
+
     nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+        padding: 0.75rem 1.5rem;
+        margin-bottom: 32px;
+    }
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+    nav ul {
+        flex-direction: row;
+        justify-content: flex-start;
+        gap: 0.5rem;
+    }
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+    nav a {
+        font-size: 0.95rem;
+        padding: 0.5rem 1rem;
+    }
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+    main {
+        padding: 4rem;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.35rem;
     }
 }
