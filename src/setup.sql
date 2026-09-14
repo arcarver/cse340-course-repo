@@ -1,6 +1,6 @@
 
 -- create the inital table
-CREATE TABLE organizations (
+CREATE TABLE organization (
     organization_id serial,
     name varchar(150) NOT NULL,
 	description TEXT NOT NULL,
@@ -9,7 +9,7 @@ CREATE TABLE organizations (
 );
 
 -- adding data
-INSERT INTO organizations (name, description, contact_email, logo_filename)
+INSERT INTO organization (name, description, contact_email, logo_filename)
 VALUES 
 ('BrightFuture Builders', 'A nonprofit focused on improving community infrastructure through sustainable construction projects.', 'info@brightfuturebuilders.org', 'brightfuture-logo.png'),
 

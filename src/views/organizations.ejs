@@ -3,12 +3,12 @@
         <h1><%= title %></h1>
         <p>Here are a few of our partner organizations:</p>
         <ul class="content-grid">
-            <li class="grid-card"><img src="/images/brightfuture-logo.png" alt="BrightFuture Builders logo"><strong>BrightFuture
-                    Builders</strong>: info@brightfuture.org</li>
-            <li class="grid-card"><img src="/images/greenharvest-logo.png" alt="GreenHarvest Growers logo"><strong>GreenHarvest Growers</strong>:
-                contact@greenharvest.org</li>
-            <li class="grid-card"><img src="/images/unityserve-logo.png" alt="UnityServe Volunteers logo"><strong>UnityServe Volunteers</strong>:
-                hello@unityserve.org</li>
+            <% organizations.forEach(organization=> { %>
+                <li class="grid-card"><img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><strong>
+                        <%= organization.name %>
+                    </strong>: <%= organization.contact_email %>
+                </li>
+                <% }); %>
         </ul>
 </main>
 <%- include('partials/footer') %>
