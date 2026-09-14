@@ -46,6 +46,16 @@ app.get('/organizations', async (req, res) => {
     res.render('organizations', { title, organizations });
 });
 
+app.get('/projects', async (req, res) => {
+    const title = 'Service Projects';
+    res.render('projects', { title });
+});
+
+app.get('/categories', async (req, res) => {
+    const title = 'Service Project Categories';
+    res.render('categories', { title });
+});
+
 app.listen(PORT, async () => {
   try {
     await testConnection();
