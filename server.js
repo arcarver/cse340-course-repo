@@ -39,11 +39,11 @@ app.get('/', async (req, res) => {
 });
 
 app.get('/organization', async (req, res) => {
-    const organizations = await getAllOrganizations();
-    // console.log(organizations);
+    const organization = await getAllOrganizations();
+    // console.log(organization);
       
     const title = 'Our Partner Organizations';
-    res.render('organization', { title, organizations });
+    res.render('organization', { title, organization });
 });
 
 app.get('/projects', async (req, res) => {
