@@ -3,9 +3,14 @@
         <h1><%= title %></h1>
     <h2>Upcoming Service Projects</h2>
     <ul class="content-grid">
-        <li class="grid-card">Food Drive - Help collect and distribute food to those in need.</li>
-        <li class="grid-card">Community Tutoring - Volunteer to tutor students in various subjects.</li>
-        <li class="grid-card">Park Cleanup - Join us to clean up local parks and make them beautiful!</li>
+        <% project.forEach(project => { %>
+            
+        <li class="grid-card"><%= project.project_date %><strong><%= project.title %></strong>
+            <%= project.description %>
+        </strong>: 
+    <%= project.location %></li>
+    <% }); %>
+        
     </ul>
     </main>
     <%- include('partials/footer') %>
