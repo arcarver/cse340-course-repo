@@ -38,12 +38,12 @@ app.get('/', async (req, res) => {
     res.render('home', { title });
 });
 
-app.get('/organization', async (req, res) => {
+app.get('/organizations', async (req, res) => {
     const organization = await getAllOrganizations();
     // console.log(organization);
       
     const title = 'Our Partner Organizations';
-    res.render('organization', { title, organization });
+    res.render('organizations', { title, organization });
 });
 
 app.get('/projects', async (req, res) => {
