@@ -3,7 +3,7 @@ import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
 import { getAllOrganizations } from './src/models/organization.js';
-
+import { getAllProjects } from './src/models/projects.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -47,7 +47,10 @@ app.get('/organizations', async (req, res) => {
 });
 
 app.get('/projects', async (req, res) => {
-    const title = 'Service Projects';
+  const project = await getAllProjects();
+  console.log(project);
+  
+  const title = 'Service Projects';
     res.render('projects', { title });
 });
 
