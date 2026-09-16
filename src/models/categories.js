@@ -2,8 +2,8 @@ import db from './db.js'
 
 const getAllCategories = async() => {
     const query = `
-        SELECT category_id, project_id 
-      FROM public.category_project;
+        SELECT category_name 
+      FROM public.category;
     `;
 
     const result = await db.query(query);
