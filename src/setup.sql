@@ -54,3 +54,58 @@ INSERT INTO project (organization_id, title, description, location, project_date
 (3, 'Youth Mentorship Kickoff Gala', 'Help set up physical event spaces, coordinate registrations, and support logistics for the annual mentor matching launch.', 'Pioneer Civic Hall, Grand Ballroom', '2027-07-18'),
 (3, 'Senior Citizen Center Supply Drive', 'Collect, bundle, and personally deliver lifestyle kits, reading materials, and medical supplies to resident elders.', 'Oak Ridge Retirement Village', '2027-09-04'),
 (3, 'Winter Clothing Sort & Pack', 'Process winter coat and boot donations to ensure clean, correctly-sized outerwear is ready for the upcoming cold weather.', 'Unity Outreach Annex, Suite 200', '2027-11-14');
+
+CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    category_name VARCHAR(150) NOT NULL
+);
+
+CREATE TABLE category_project (
+	category_id INT,
+	project_id INT,
+	 
+	 PRIMARY KEY (category_id, project_id),
+    FOREIGN KEY (category_id) REFERENCES category (category_id),
+	FOREIGN KEY (project_id) REFERENCES project (project_id)
+);
+
+INSERT INTO category (category_name) VALUES 
+('Enviromental'),
+('Educational'),
+('Community Service'),
+('Health and Wellness');
+
+INSERT INTO category_project (category_id, project_id) VALUES
+(1,1),
+(1,2),
+(1,3),
+(1,4),
+(1,5),
+(1,6),
+(1,7),
+(1,8),
+(2,1),
+(2,2),
+(2,4),
+(2,5),
+(2,6),
+(2,7),
+(2,8),
+(2,9),
+(3,1),
+(3,2),
+(3,4),
+(3,5),
+(3,6),
+(3,7),
+(3,8),
+(3,9),
+(3,10),
+(3,11),
+(3,12),
+(3,13),
+(3,14),
+(3,15),
+(4,10),
+(4,11),
+(4,14)
