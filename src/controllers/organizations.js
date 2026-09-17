@@ -1,7 +1,14 @@
-app.get('/organizations', async (req, res) => {
+// import 
+import { getAllOrganizations } from "../models/organization";
+
+// define 
+const showOrganizationsPage = async (req, res) => {
     const organization = await getAllOrganizations();
     // console.log(organization);
       
     const title = 'Our Partner Organizations';
     res.render('organizations', { title, organization });
-});
+};
+
+// export 
+export { showOrganizationsPage };
