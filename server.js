@@ -1,10 +1,9 @@
+
 import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
-import { getAllOrganizations } from './src/models/organization.js';
-import { getAllProjects } from './src/models/projects.js';
-import { getAllCategories } from './src/models/categories.js';
+import router from './src/routes.js';
 
 // Define the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -48,10 +47,7 @@ app.use((req, res, next) => {
  * Routes
  */
 
-
-
-
-
+app.use(router);
 
 
 // Catch-all route for 404 errors
