@@ -1,5 +1,5 @@
 // import 
-import { getAllCategories } from "../models/categories";
+import { getAllCategories } from "../models/categories.js";
 
 // define 
 const showCategoriesPage = async (req, res) => {

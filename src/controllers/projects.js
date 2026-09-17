@@ -1,5 +1,5 @@
 // import 
-import { getAllProjects } from "../models/projects";
+import { getAllProjects } from "../models/projects.js";
 
 // define 
 const showProjectsPage = async (req, res) => {
