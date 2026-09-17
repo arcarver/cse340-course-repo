@@ -47,41 +47,12 @@ app.use((req, res, next) => {
 /**
  * Routes
  */
-app.get('/', async (req, res) => {
-    const title = 'Home';
-    res.render('home', { title });
-});
 
-app.get('/organizations', async (req, res) => {
-    const organization = await getAllOrganizations();
-    // console.log(organization);
-      
-    const title = 'Our Partner Organizations';
-    res.render('organizations', { title, organization });
-});
 
-app.get('/projects', async (req, res) => {
-  const project = await getAllProjects();
-  // console.log(project);
-  
-  const title = 'Service Projects';
-    res.render('projects', { title, project });
-});
 
-app.get('/categories', async (req, res) => {
-  const category = await getAllCategories();
-  // console.log(category);
 
-    const title = 'Service Project Categories';
-    res.render('categories', { title, category });
-});
 
-// Test route for 500 errors
-app.get('/test-error', (req, res, next) => {
-    const err = new Error('This is a test error');
-    err.status = 500;
-    next(err);
-});
+
 
 // Catch-all route for 404 errors
 app.use((req, res, next) => {
