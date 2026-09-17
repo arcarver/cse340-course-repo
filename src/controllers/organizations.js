@@ -1,13 +1,13 @@
 // import 
-import { getAllOrganizations } from "../models/organization";
+import { getAllOrganizations } from "../models/organizations";
 
 // define 
 const showOrganizationsPage = async (req, res) => {
-    const organization = await getAllOrganizations();
+    const organizations = await getAllOrganizations();
     // console.log(organization);
       
     const title = 'Our Partner Organizations';
-    res.render('organizations', { title, organization });
+    res.render('organizations', { title, organizations });
 };
 
 // export 
