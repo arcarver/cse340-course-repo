@@ -1,0 +1,16 @@
+<%- include('partials/header') %>
+    <main>
+        
+        <%= name %>
+        <ul class="content-grid">
+            <% category.forEach(category=> { %>
+                <li class="grid-card"><strong>
+                        <%= category.category_name %>
+                    </strong>
+                    <% }); %>
+
+                </li>
+
+        </ul>
+    </main>
+    <%- include('partials/footer') %>
