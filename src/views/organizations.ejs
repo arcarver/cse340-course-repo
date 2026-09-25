@@ -4,7 +4,9 @@
         <p>Here are a few of our partner organizations:</p>
         <ul class="content-grid">
             <% organization.forEach(organization=> { %>
-                <li class="grid-card"><img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><strong>
+                <li class="grid-card"><img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><a href="/organization/<%= organization.organization_id %>">
+                    <%= organization.name %>
+                </a><strong>
                         <%= organization.name %>
                     </strong>: <%= organization.contact_email %>
                 </li>
