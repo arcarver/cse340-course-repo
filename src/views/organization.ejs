@@ -1,16 +1,18 @@
 <%- include('partials/header') %>
     <main>
-        
-        <%= name %>
-        <ul class="content-grid">
-            <% category.forEach(category=> { %>
-                <li class="grid-card"><strong>
-                        <%= category.category_name %>
-                    </strong>
-                    <% }); %>
-
-                </li>
-
-        </ul>
+        <h1><%= title %></h1>
+        <h2><%= name %></h2>
+            <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><strong>
+            <p>Description: <%= organization.description %>
+            </p>
+            <h3>Service Projects</h3>
+            <ul class="content-grid">
+            <% project.forEach(title=> { %>
+                <li class="grid-card">
+                    <a href="/project/<%= project.project_id %>"><%=project.title %></a></li>
+                        
+                        <% }) %>
+                </ul>
+                        
     </main>
     <%- include('partials/footer') %>
