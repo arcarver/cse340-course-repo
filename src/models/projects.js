@@ -42,13 +42,13 @@ const getUpcomingProjects = async (number_of_projects) => {
   project.title,
   project.description,
   project.location,
-  project.project_date
+  project.project_date AS date
       FROM public.project
       INNER JOIN organization on project.organization_id = organization.organization_id
-      WHERE date >= date.time.now
+      WHERE project.project_date >= current_date
       
       ORDER BY date ASC
-      LIMIT  number_of_projects = $5;
+      LIMIT $1;
     `;
   
   const queryParams = [number_of_projects];
@@ -59,16 +59,16 @@ const getUpcomingProjects = async (number_of_projects) => {
 const getProjectDetails = async (project_id) => {
   const query = `
   SELECT
-    p.project_id,
-    p.title,
-    p.description,
-    p.project_date AS date,
-    p.location,
-    o.organization_id,
-    o.organization_name
-    FROM project p
-    INNER JOIN organization o on project.organization_id = organization.organization_id
-    WHERE service_project_id = project_id
+    project.project_id AS service_project_id,
+    project.title,
+    project.description,
+    project.project_date AS date,
+    project.location,
+    project.organization_id,
+    organization.name
+    FROM project
+    INNER JOIN organization on project.organization_id = organization.organization_id
+    WHERE project.project_id = $1
   
     `;
   const queryParams = [project_id];

@@ -5,13 +5,14 @@
     <ul class="content-grid">
         <% project.forEach(project => { %>
             
-        <li class="grid-card"><%= new Date(project.project_date).toLocaleDateString('en-US', {
+        <li class="grid-card"><%= new Date(project.date).toLocaleDateString('en-US', {
             weekday: 'short',
             month: 'short',
             day: 'numeric',
             year: 'numeric'
-        }) %><strong> <%= project.title %></strong>
-            (<%= project.name %>)
+        }) %>
+        <a href="/project/<%= project.project_id %>"> <%= project.title %></a>
+            <a href="/organization/<%= project.organization_id %>" ><%= project.name %></a>
          
     </li>
     <% }); %>
