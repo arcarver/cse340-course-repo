@@ -13,7 +13,7 @@ const getAllProjects = async() => {
 }
 
 
-const getProjectsByOrganizationId = async (organizationId) => {
+const getProjectsByOrganizationId = async (organization_id) => {
       const query = `
         SELECT
           project_id,
@@ -27,7 +27,7 @@ const getProjectsByOrganizationId = async (organizationId) => {
         ORDER BY date;
       `;
       
-      const queryParams = [organizationId];
+      const queryParams = [organization_id];
       const result = await db.query(query, queryParams);
 
       return result.rows;
@@ -42,6 +42,7 @@ const getUpcomingProjects = async (number_of_projects) => {
   project.title,
   project.description,
   project.location,
+  project.project_id,
   project.project_date AS date
       FROM public.project
       INNER JOIN organization on project.organization_id = organization.organization_id
@@ -65,7 +66,7 @@ const getProjectDetails = async (project_id) => {
     project.project_date AS date,
     project.location,
     project.organization_id,
-    organization.name
+    organization.name AS organization_name
     FROM project
     INNER JOIN organization on project.organization_id = organization.organization_id
     WHERE project.project_id = $1

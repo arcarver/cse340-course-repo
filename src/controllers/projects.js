@@ -7,7 +7,7 @@ const NUMBER_OF_UPCOMING_PROJECTS = 5;
 // define 
 const showProjectsPage = async (req, res) => {
   const project = await getUpcomingProjects(NUMBER_OF_UPCOMING_PROJECTS);
-  // console.log(project);
+  console.log("UPCOMING PROJECTS: ", project);
   
   
   const title = 'Upcoming Service Projects';
@@ -18,7 +18,8 @@ const showProjectDetailsPage = async (req, res) => {
   const { project_id } = req.params;
   const projectDetails = await getProjectDetails(project_id);
 
-  res.render('project.ejs', { project: projectDetails });
+  console.log("DATABASE RESULTS is:", projectDetails);
+  res.render('project.ejs', { project: projectDetails[0], title: 'Project Details' });
   }
 
 // export 

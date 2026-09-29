@@ -17,7 +17,7 @@ const showOrganizationDetailsPage = async (req, res) => {
     const organizationDetails = await getOrganizationDetails(organizationId);
     const projects = await getProjectsByOrganizationId(organizationId);
     const title = 'Organization Details';
-
+    console.log("DATABASE RESULTS IS:", date);
     res.render('organization', {title, organizationDetails, projects});
 };
 

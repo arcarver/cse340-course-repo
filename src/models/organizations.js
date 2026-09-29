@@ -12,7 +12,7 @@ const getAllOrganizations = async() => {
 }
 
 
-const getOrganizationDetails = async (organizationId) => {
+const getOrganizationDetails = async (organization_id) => {
       const query = `
       SELECT
         organization_id,
@@ -24,7 +24,7 @@ const getOrganizationDetails = async (organizationId) => {
       WHERE organization_id = $1;
     `;
 
-      const queryParams = [organizationId];
+      const queryParams = [organization_id];
       const result = await db.query(query, queryParams);
 
       // Return the first row of the result set, or null if no rows are found

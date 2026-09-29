@@ -1,15 +1,15 @@
 <%- include('partials/header') %>
-    <main>
-        <h1>
-            <%= project.title %>
+ <main> 
+    <h1>
+            <%= project.title || "No Title Found" %>
         </h1>
         <p>
-            <%= project.description %>
-        </p>             
-        <h3><%= project.date %></h3>
-        <h4><%= project.location %></h4>
+            <%= project.description || "No Location" %>
+        </p>
+        <h3><%= project.date || "No Date" %></h3>
+        <h4><%= project.location || "No Location" %></h4>
         <p>
-                <a href="/organization/<%= organization.organization_id %>">    <%= project.organization_name %>
+                <a href="/organization/<%= project.organization_id %>">    <%= project.organization_name  || "No Organization Name "%>
                 
                 </a>
                 </p>
