@@ -15,10 +15,11 @@ const showCategoriesPage = async (req, res) => {
 
 const showCategoryDetailsPage = async (req, res) => {
     const { category_id } = req.params;
-    const categoryDetails = await getAllProjectsForCategory(category_id);
+    const projectList = await getAllProjectsForCategory(category_id);
+    const categoryName = projectList.length > 0 ? projectList[0].category_name : "Category";
 
-    console.log("Category is:", categoryDetails);
-    res.render('category.ejs', { category: categoryDetails[0], title: 'Category Details' });
+    console.log("Category is:", projectList);
+    res.render('category.ejs', {projects: projectList, category_name: categoryName, title: 'Category Details' });
     
 }
 // export 

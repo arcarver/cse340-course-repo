@@ -4,7 +4,7 @@
             <%= project.title || "No Title Found" %>
         </h1>
         <p>
-            <%= project.description || "No Location" %>
+            <%= project.description || "No Description" %>
         </p>
         <h3><%= project.date || "No Date" %></h3>
         <h4><%= project.location || "No Location" %></h4>
@@ -13,5 +13,12 @@
                 
                 </a>
                 </p>
+                <h5>Project Categories:</h5>
+                <% categories.forEach(function(cat) {%>
+                    <a href="/category/<%= cat.category_id %>">
+                        <%= cat.category_name || "No Category Name " %>
+                    
+                    </a><%}); %>
+            
     </main>
     <%- include('partials/footer') %>

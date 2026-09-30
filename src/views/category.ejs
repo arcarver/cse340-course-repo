@@ -4,7 +4,7 @@
             <%= category_name || "No Category Name Found" %>
         </h1>
 <ul class="content-grid">
-<% category.forEach(project=> { %>
+<% projects.forEach(project=> { %>
     <li class="grid-card">
         <a href="/project/<%= project.project_id %>">
             <%=project.title %>
