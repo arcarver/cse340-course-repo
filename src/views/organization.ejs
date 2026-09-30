@@ -1,13 +1,13 @@
 <%- include('partials/header') %>
     <main>
         <h1><%= title %></h1>
-        <h2><%= name %></h2>
+        <h2><%= organization.name %></h2>
             <img src="/images/<%= organization.logo_filename %>" alt="<%= organization.name %> logo"><strong>
             <p>Description: <%= organization.description %>
             </p>
             <h3>Service Projects</h3>
             <ul class="content-grid">
-            <% project.forEach(title=> { %>
+            <% project.forEach(project=> { %>
                 <li class="grid-card">
                     <a href="/project/<%= project.project_id %>"><%=project.title %></a></li>
                         

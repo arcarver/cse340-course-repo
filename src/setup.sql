@@ -1,7 +1,7 @@
 
 -- create the inital table
 CREATE TABLE organization (
-    organization_id serial,
+    organization_id serial PRIMARY KEY,
     name varchar(150) NOT NULL,
 	description TEXT NOT NULL,
 	contact_email VARCHAR(255) NOT NULL,
