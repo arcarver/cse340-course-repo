@@ -1,0 +1,17 @@
+<%- include('partials/header') %>
+    <main>
+        <h1>
+            <%= category_name || "No Category Name Found" %>
+        </h1>
+<ul class="content-grid">
+<% category.forEach(project=> { %>
+    <li class="grid-card">
+        <a href="/project/<%= project.project_id %>">
+            <%=project.title %>
+        </a>
+    </li>
+
+    <% }) %>
+</ul>
+    </main>
+    <%- include('partials/footer') %>
