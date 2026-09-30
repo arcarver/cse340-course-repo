@@ -6,7 +6,12 @@
         <p>
             <%= project.description || "No Description" %>
         </p>
-        <h3><%= project.date || "No Date" %></h3>
+        <h3><%= new Date(project.date).toLocaleDateString('en-US', {
+        weekday: 'short',
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'})
+        || "No Date" %></h3>
         <h4><%= project.location || "No Location" %></h4>
         <p>
                 <a href="/organization/<%= project.organization_id %>">    <%= project.organization_name  || "No Organization Name "%>
@@ -15,7 +20,7 @@
                 </p>
                 <h5>Project Categories:</h5>
                 <% categories.forEach(function(cat) {%>
-                    <a href="/category/<%= cat.category_id %>">
+                    <a href="  /category/<%= cat.category_id %>">
                         <%= cat.category_name || "No Category Name " %>
                     
                     </a><%}); %>
