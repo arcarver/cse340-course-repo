@@ -7,6 +7,7 @@ import { showCategoriesPage, showCategoryDetailsPage } from './controllers/categ
 import { testErrorPage } from './controllers/errors.js';
 import { showOrganizationDetailsPage } from './controllers/organizations.js';
 import { showProjectDetailsPage } from './controllers/projects.js';
+import { showNewOrganizationForm } from './controllers/organizations.js';
 
 
 
@@ -22,6 +23,8 @@ router.get('/organization/:organization_id', showOrganizationDetailsPage);
 router.get('/project/:project_id', showProjectDetailsPage);
 // Route for category details page
 router.get('/category/:category_id', showCategoryDetailsPage);
+// Route for new organization page
+router.get('/new-organization', showNewOrganizationForm);
 // error-handling routes
 router.get('/test-error', testErrorPage);
 
