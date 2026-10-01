@@ -16,9 +16,15 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 
+
 /**
   * Configure Express middleware
   */
+
+// Allow Express to receive and process common POST data
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json()); // For handling JSON data from API requests
+
 
 // Serve static files from the public directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -37,9 +43,7 @@ app.use((req, res, next) => {
     next(); // Pass control to the next middleware or route
 });
 
-// Express middleware to parse form data from request bodies
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json()); // For handling JSON data from API requests
+
 
 // Middleware to make NODE_ENV available to all templates
 app.use((req, res, next) => {
