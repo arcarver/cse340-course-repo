@@ -6,18 +6,18 @@
 
         <form action="/new-organization" method="POST">
             <div class="form-group">
-                <label for="name">Organization Name</label>
+                <label for="name" required maxlength="150">Organization Name</label>
                 <input type="text" id="name" name="name" />
             </div>
 
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea id="description" name="description"></textarea>
+                <textarea id="description" name="description" required maxlength="500"></textarea>
             </div>
 
             <div class="form-group">
                 <label for="contactEmail">Contact Email</label>
-                <input type="text" id="contactEmail" name="contactEmail" />
+                <input type="email" required id="contactEmail" name="contactEmail" />
             </div>
 
             <button type="submit">Create Organization</button>
