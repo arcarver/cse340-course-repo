@@ -9,7 +9,18 @@
     </title>
     <link rel="stylesheet" href="/css/main.css">
 </head>
+<% if (locals.flash) { %>
+    <% const messages = locals.flash(); %>
+    <% Object.keys(messages).forEach(type=> { %>
+        <% if (messages[type].length> 0) { %>
 
+            <% messages[type].forEach(msg=> { %>
+                <div class="alert <%= type %>">
+                <%= msg %></div>
+            <% }); %>
+        <% } %>
+    <% }); %>
+<% } %>
 <body>
     <nav>
         <ul>
