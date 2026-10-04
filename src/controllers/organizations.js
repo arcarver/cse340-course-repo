@@ -79,7 +79,7 @@ const processNewOrganizationForm = async (req, res) => {
 const showEditOrganizationForm = async (req, res) => {
     const organizationId = req.params.organization_id;
     const organizationDetails = await getOrganizationDetails(organizationId);
-    console.log(organzationDetails);
+    console.log(organizationDetails);
 
     const title = "Organization: Edit Page";
     res.render('edit-organization', { title, organizationDetails });
