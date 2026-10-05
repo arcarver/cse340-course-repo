@@ -3,6 +3,7 @@ import { getAllOrganizations, getOrganizationDetails } from '../models/organizat
 import { getProjectsByOrganizationId } from '../models/projects.js';
 import { createOrganization } from '../models/organizations.js';
 import { body, validationResult } from 'express-validator';
+import { updateOrganization } from '../models/organizations.js';
 
 
 // Define validation and sanitization rules for organization form
@@ -20,7 +21,7 @@ const organizationValidation = [
         .withMessage('Organization description is required')
         .isLength({ max: 500 })
         .withMessage('Organization description cannot exceed 500 characters'),
-    body('contactEmail')
+    body('contact_email')
         .normalizeEmail()
         .notEmpty()
         .withMessage('Contact email is required')
@@ -68,10 +69,10 @@ const processNewOrganizationForm = async (req, res) => {
         return res.redirect('/new-organization');
     }
 
-    const { name, description, contactEmail } = req.body;
-    const logoFilename = 'placeholder-logo.png'; // Use the placeholder logo for all new organizations    
+    const { name, description, contact_email } = req.body;
+    const logo_filename = 'placeholder-logo.png'; // Use the placeholder logo for all new organizations    
 
-    const organizationId = await createOrganization(name, description, contactEmail, logoFilename);
+    const organizationId = await createOrganization(name, description, contact_email, logo_filename);
     req.flash('success', 'Organization added successfully!');
     res.redirect(`/organization/${organizationId}`);
 };
@@ -88,12 +89,12 @@ const showEditOrganizationForm = async (req, res) => {
 
 const processEditOrganizationForm = async (req, res) => {
     const organizationDetails = req.params.organization_id;
-    const { name, description, contactEmail, logoFilename } = req.body
-    await updateOrganization(organizationDetails, name, description, contactEmail, logoFilename);
+    const { name, description, contact_email, logo_filename } = req.body
+    await updateOrganization(organizationDetails, name, description, contact_email, logo_filename);
 
     // set flash for success
     req.flash('success', 'Organization was updated successfully!');
-    res.redirect('/organization/${organizationDetails');
+    res.redirect(`/organization/${organizationDetails}`);
 };
 
 // Export any controller functions
