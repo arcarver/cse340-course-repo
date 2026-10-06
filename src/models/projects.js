@@ -78,7 +78,7 @@ const getProjectDetails = async (project_id) => {
   return details.rows;
 }
 
-  const createProject = async (title, description, location, date, organization_id) => {
+  const createProject = async (title, description, location, project_date, organization_id) => {
     
     const query = `
     INSERT INTO project (title, description, location, project_date, organization_id)
