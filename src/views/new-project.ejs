@@ -28,9 +28,9 @@
             <div class="'form-group">
                 <label for="organization_id">Organization</label>
                 <input id="organization_id" name="organization_id" required/>
-                <option values="">Select an Organization</option> 
-                <% organizations.forEach(org => { %>
-                 <option values="<%= organization.organization_id %>"><%= organization.name %></option>
+                <option value="">Select an Organization</option> 
+                <% organizations.forEach(organization => { %>
+                 <option value="<%= organization.organization_id %>"><%= organization.name %></option>
                 <% }); %>
                 </select>
             </div>

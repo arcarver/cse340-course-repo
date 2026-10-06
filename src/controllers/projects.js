@@ -39,11 +39,11 @@ const showNewProjectForm = async (req, res) => {
 const processNewProjectForm = async (req, res) => {
   // Extradct form date from req.body
  
-  const { title, description, location, date, organization_id } = req.body;
+  const { title, description, location, project_date, organization_id } = req.body;
   
   try {
     //Create the new project in the database
-    const newProjectID = await createProject(title, description, location, date, organization_id);
+    const newProjectID = await createProject(title, description, location, project_date, organization_id);
 
     req.flash('success', 'New service project created successfully!');
     res.redirect(`/project/${newProjectID}`);

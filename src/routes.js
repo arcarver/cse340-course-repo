@@ -38,7 +38,7 @@ router.get('/test-error', testErrorPage);
 // edit organization route
 router.get('/edit-organization/:organization_id', showEditOrganizationForm);
 router.post('/edit-organization/:organization_id', organizationValidation, processEditOrganizationForm);
-router.get('/new-project/', showNewProjectForm);
-router.post('/new-project/', processNewProjectForm)
+router.get('/new-project', showNewProjectForm);
+router.post('/new-project', processNewProjectForm)
 
 export default router;

@@ -81,11 +81,11 @@ const getProjectDetails = async (project_id) => {
   const createProject = async (title, description, location, date, organization_id) => {
     
     const query = `
-    INSERT INTO project (title, description, location, date, organization_id)
+    INSERT INTO project (title, description, location, project_date, organization_id)
     VALUES ($1, $2, $3, $4, $5)
     RETURNING project_id;
     `;
-    const queryParams = [title, description, location, date, organization_id];
+    const queryParams = [title, description, location, project_date, organization_id];
     const result = await db.query(query, queryParams);
 
     if (result.rows.length === 0) {
