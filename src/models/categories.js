@@ -65,7 +65,7 @@ const assignCategoryToProject = async (category_id, project_id) => {
   await db.query(query, [category_id, project_id]);
 }
   
-const updateCategoryAssignments = async (project_id, category_id) => {
+const updateCategoryAssignments = async (project_id, categoryIds) => {
   // first remove assignments 
   const deleteQuery = `
   DELETE FROM category_project
@@ -74,7 +74,7 @@ const updateCategoryAssignments = async (project_id, category_id) => {
   await db.query(deleteQuery, [project_id]);
 
   //add new categories
-  for (const category_id of category_ids) {
+  for (const category_id of categoryIds) {
     await assignCategoryToProject(category_id, project_id);
   }
   

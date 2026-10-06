@@ -57,12 +57,14 @@ const showProjectDetailsPage = async (req, res) => {
 
   console.log("DATABASE RESULTS is:", projectDetails);
   console.log("categories are:", showCategories);
-  res.render('project.ejs', { project: projectDetails[0], title: 'Project Details', categories: showCategories });
+
+  const currentProject = projectDetails[0];
+  res.render('project.ejs', { project: currentProject, projectDetails: currentProject, project_id, project_id, title: 'Project Details', categories: showCategories });
   }
 
 const showNewProjectForm = async (req, res) => {
   const organizations = await getAllOrganizations(); 
-  const title = 'Add New Servide Project'; 
+  const title = 'Add New Service Project'; 
   
   res.render('new-project', { title, organizations }); 
 }
