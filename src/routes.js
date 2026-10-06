@@ -12,6 +12,7 @@ import { processNewOrganizationForm } from './controllers/organizations.js';
 import { organizationValidation } from './controllers/organizations.js';
 import { showEditOrganizationForm } from './controllers/organizations.js';
 import { processEditOrganizationForm } from './controllers/organizations.js';
+import { showNewProjectForm, processNewProjectForm } from './controllers/projects.js';
 // appartently you can put many function together if they are from the same file;
 
 
@@ -37,5 +38,7 @@ router.get('/test-error', testErrorPage);
 // edit organization route
 router.get('/edit-organization/:organization_id', showEditOrganizationForm);
 router.post('/edit-organization/:organization_id', organizationValidation, processEditOrganizationForm);
+router.get('/new-project/', showNewProjectForm);
+router.post('/new-project/', processNewProjectForm)
 
 export default router;
