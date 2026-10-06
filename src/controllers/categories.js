@@ -50,4 +50,4 @@ const processAssignCategoriesForm = async (req, res) => {
 };
 
 // export 
-export { showCategoriesPage, showCategoryDetailsPage };
+export { showCategoriesPage, showCategoryDetailsPage, showAssignCategoriesForm, processAssignCategoriesForm };

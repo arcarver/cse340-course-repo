@@ -14,6 +14,7 @@ import { showEditOrganizationForm } from './controllers/organizations.js';
 import { processEditOrganizationForm } from './controllers/organizations.js';
 import { showNewProjectForm, processNewProjectForm } from './controllers/projects.js';
 import { projectValidation } from './controllers/projects.js';
+import { showAssignCategoriesForm, processAssignCategoriesForm } from './controllers/categories.js';
 // appartently you can put many function together if they are from the same file;
 
 
@@ -41,6 +42,10 @@ router.get('/edit-organization/:organization_id', showEditOrganizationForm);
 router.post('/edit-organization/:organization_id', organizationValidation, processEditOrganizationForm);
 router.get('/new-project', showNewProjectForm);
 router.post('/new-project', projectValidation, processNewProjectForm);
+// handle the assign cattegorie to projects
+router.get('/assign-categories/:project_id', showAssignCategoriesForm);
+router.post('/assign-categories/:project_id', processAssignCategoriesForm);
+    
 
 
 export default router;
