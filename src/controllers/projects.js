@@ -5,7 +5,7 @@ import { getProjectDetails } from "../models/projects.js";
 import { getAllCategoriesForProject } from "../models/categories.js";
 import { createProject } from "../models/projects.js";
 import { getAllOrganizations } from "../models/organizations.js";
-import { render } from "ejs";
+
 
 
 const NUMBER_OF_UPCOMING_PROJECTS = 5;
