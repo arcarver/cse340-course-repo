@@ -98,14 +98,12 @@ const processEditOrganizationForm = async (req, res) => {
         // Redirect back to the edit organization form
     return res.redirect('/edit-organization/' + req.params.organization_id);
     }
-    const { name, description, contact_email, logo_filename } = req.body
+    const { name, description, contact_email, logo_filename } = req.body;
     await updateOrganization(organizationDetails, name, description, contact_email, logo_filename);
 
     // set flash for success
     req.flash('success', 'Organization was updated successfully!');
     res.redirect(`/organization/${organizationDetails}`);
-
-  
 };
 
 // Export any controller functions

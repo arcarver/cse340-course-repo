@@ -10,10 +10,8 @@
                     <%= category.category_name %>
                 </strong>
                 <a href="/category/<%= category.category_id %>"><strong><%= category.category_name%></strong></a></li>
-                <% }); %>
-                
-            
-           
+                <% }); %>           
         </ul>
+        <p><a href="/new-category">Add a new category</a></p>
     </main>
     <%- include('partials/footer') %>

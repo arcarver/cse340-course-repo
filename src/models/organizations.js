@@ -83,5 +83,10 @@ const updateOrganization = async (organizationId, name, description, contact_ema
   return result.rows[0].organization_id;
 };
 // Export the model functions
-export { getAllOrganizations, getOrganizationDetails, createOrganization, updateOrganization };
+export {
+  getAllOrganizations,
+  getOrganizationDetails,
+  createOrganization,
+  updateOrganization
+};
 

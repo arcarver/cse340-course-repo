@@ -4,7 +4,7 @@
             <%= title %>
         </h1>
 
-        <form action="/edit-category/<%= category.category_name %>" method="POST">
+        <form action="/edit-category/<%= category.category_id %>" method="POST">
             <div class="form-group">
                 <label for="category_name">Category Name</label>
                 <input type="text" id="category_name" name="category_name" value="<%= category.category_name %>" required
