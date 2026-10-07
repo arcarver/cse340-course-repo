@@ -28,10 +28,13 @@ const showCategoryDetailsPage = async (req, res) => {
 const showAssignCategoriesForm = async (req, res) => {
   const project_id = req.params.project_id;
   
-  const projectDetails = await getProjectDetails(project_id);
+  // const projectDetails = await getProjectDetails(project_id);
+  const dbRows = await getProjectDetails(project_id);
   const categories = await getAllCategories();
   const assignedCategories = await getAllCategoriesForProject(project_id);
-
+  // try this
+  const projectDetails = dbRows[0];
+   
   const title = "Assign Categories to Project";
 
   res.render('assign-categories', { title, project_id, projectDetails, categories, assignedCategories });
@@ -47,7 +50,8 @@ const processAssignCategoriesForm = async (req, res) => {
   const categoryIdsArray = Array.isArray(selectedCategoryIds) ? selectedCategoryIds : [selectedCategoryIds];
   await updateCategoryAssignments(project_id, categoryIdsArray);
   req.flash('success', 'categories updated successfully.');
-  res.redirect(`/project/${project_id}`);
+  return res.redirect(`/project/${project_id}`);
+  // return res.redirect('/project/' + req.params.project_id);
   // might need a return.
 };
 
