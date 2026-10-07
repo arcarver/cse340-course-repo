@@ -1,5 +1,5 @@
 // import 
-import { getAllProjects } from "../models/projects.js";
+import { getAllProjects, updateProject } from "../models/projects.js";
 import { getUpcomingProjects } from "../models/projects.js";
 import { getProjectDetails } from "../models/projects.js";
 import { getAllCategoriesForProject } from "../models/categories.js";
@@ -95,8 +95,41 @@ const processNewProjectForm = async (req, res) => {
     req.flash('error', 'There was an error creating the service project.');
     res.redirect('/new-project');
   }
-
 }
 
-// export 
-export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation };
+const showEditProjectForm = async (req, res) => {
+  const projectId = req.params.project_id;
+  const dbRows = await getProjectDetails(projectId)
+
+  if (!dbRows || dbRows.length === 0) {
+    req.flash('error', 'Project details missing.');
+    return res.redirect('/projects');
+  }
+  const projectDetails = dbRows[0];  
+  console.log(projectDetails);
+  const organizationList = await getAllOrganizations();
+
+  const title = "Project: Edit Page";
+  res.render('edit-project', { title, projectDetails, organizationList });
+}
+
+const processEditProjectForm = async (req, res) => {
+  const projectDetails = req.params.project_id;
+  //  Validation
+  const results = validationResult(req);
+  if (!results.isEmpty()) {
+    results.array().forEach((error) => {
+      req.flash('error', error.msg);
+    });
+    // redirect to edit project form
+    return res.redirect('/edit-project/' + req.params.project_id);
+  }
+  const { title, description, location, project_date, organization_id } = req.body
+  await updateProject(projectDetails, title, description, location, project_date, organization_id);
+
+  req.flash('success', 'Project was updated successfully!');
+  res.redirect(`/project/${projectDetails}`);
+};
+
+  // export
+export { showProjectsPage, showProjectDetailsPage, showNewProjectForm, processNewProjectForm, projectValidation, showEditProjectForm, processEditProjectForm };

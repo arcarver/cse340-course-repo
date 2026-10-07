@@ -48,6 +48,7 @@ const processAssignCategoriesForm = async (req, res) => {
   await updateCategoryAssignments(project_id, categoryIdsArray);
   req.flash('success', 'categories updated successfully.');
   res.redirect(`/project/${project_id}`);
+  // might need a return.
 };
 
 // export 

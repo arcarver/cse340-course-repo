@@ -84,7 +84,6 @@ const showEditOrganizationForm = async (req, res) => {
 
     const title = "Organization: Edit Page";
     res.render('edit-organization', { title, organizationDetails });
-
 }
 
 const processEditOrganizationForm = async (req, res) => {
@@ -92,7 +91,7 @@ const processEditOrganizationForm = async (req, res) => {
       // check for validation errors
     const results = validationResult(req);
     if (!results.isEmpty()) {
-        //validation failed - loop through errors
+        //  validation failed - loop through errors
         results.array().forEach((error) => {
             req.flash('error', error.msg);
         });
