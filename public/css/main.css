@@ -170,6 +170,83 @@ p {
     box-shadow: 0 12px 20px -3px rgba(15, 23, 42, 0.08);
 }
 
+/* ----------------------------------------------------
+   Global Link Settings (Anchors & hrefs)
+------------------------------------------------------- */
+
+/* 1. Base Inline Links (Standard text links) */
+a {
+    color: var(--primary-color, #2563eb);
+    text-decoration: none;
+    /* Remove ugly default underlines */
+    font-weight: 500;
+    background-image: linear-gradient(rgba(37, 99, 235, 0.2), rgba(37, 99, 235, 0.2));
+    background-position: 0% 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 2px;
+    /* Hidden underline transition layer */
+    transition: color 0.15s ease, background-size 0.2s ease;
+}
+
+/* Elegant growing underline animation on hover */
+a:hover {
+    color: var(--primary-hover, #1d4ed8);
+    background-size: 100% 2px;
+    /* Animate underline width out seamlessly */
+}
+
+/* Accessibility: Clear outline for keyboard navigation */
+a:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.35);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+/* 2. Utility Action Links (Like your "Edit Category" button layout) */
+a[href*="edit"],
+a[href*="new"],
+.btn-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted, #64748b);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: 1px solid var(--border-color, #e2e8f0);
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius, 8px);
+    background: var(--bg-card, #ffffff);
+    background-image: none;
+    /* Disable the standard hover text line */
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    transition: all 0.15s ease-in-out;
+}
+
+a[href*="edit"]:hover,
+a[href*="new"]:hover,
+.btn-link:hover {
+    color: var(--text-main, #0f172a);
+    background-color: var(--bg-main, #f8fafc);
+    border-color: #cbd5e1;
+    transform: translateY(-1px);
+    /* Slight interactive pop effect */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+a[href*="edit"]:active,
+a[href*="new"]:active,
+.btn-link:active {
+    transform: translateY(0);
+    /* Click feedback */
+}
+/* 3. Card/Navigation Header Links (Strips away typical text styling entirely) */
+.content-grid a,
+.nav-container a,
+h1 a {
+    background-image: none !important;
+    /* Block text underscores inside menus or structural grid elements */
+}
+
+
 /* ==========================================================================
    6. Footer Execution
    ========================================================================== */

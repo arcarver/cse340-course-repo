@@ -6,9 +6,7 @@
         <h2>Service Project Categories</h2>
         <ul class="content-grid">
             <% category.forEach(category=> { %>
-            <li class="grid-card"><strong>
-                    <%= category.category_name %>
-                </strong>
+            <li class="grid-card">
                 <a href="/category/<%= category.category_id %>"><strong><%= category.category_name%></strong></a></li>
                 <% }); %>           
         </ul>
