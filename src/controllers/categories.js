@@ -78,6 +78,7 @@ const processNewCategoryForm = async (req, res) => {
   if (!results.isEmpty()) {
     results.array().forEach((error) => {
       req.flash('error', error.msg);
+      console.log("Location2");
     });
 
     return res.redirect('/new-category');
@@ -104,6 +105,7 @@ const processEditCategoryForm = async (req, res) => {
   if (!results.isEmpty()) {
     results.array().forEach((error) => {
       req.flash('error', error.msg);
+      console.log("Location 4");
     });
     return res.redirect('/edit-category/' + req.params.category_id);
   }
