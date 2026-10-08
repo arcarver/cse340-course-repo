@@ -28,10 +28,15 @@ const showCategoriesPage = async (req, res) => {
 }
 
 const showCategoryDetailsPage = async (req, res) => {
-    const { category_id } = req.params;
-    const projectList = await getAllProjectsForCategory(category_id);
-    const categoryName = projectList.length > 0 ? projectList[0].category_name : "Category";
+  const { category_id } = req.params;
+  
+  // new code to fix new empty categories
+  const categoryInfo = await getCategoryDetails(category_id);
+  const categoryName = categoryInfo ? categoryInfo.category_name : "Category";
 
+  const projectList = await getAllProjectsForCategory(category_id);
+    // const categoryName = projectList.length > 0 ? projectList[0].category_name : "Category";
+console.log('--> categoryInfo object content is:', categoryInfo)
     console.log("Category is:", projectList);
     res.render('category.ejs', {projects: projectList, category_name: categoryName, title: 'Category Details', category_id: category_id });
     
