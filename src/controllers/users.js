@@ -41,7 +41,7 @@ const processLoginForm = async (req, res) => {
             req.session.user = user;
             req.flash('success', 'Login was succesful!');
 
-            if (res.local.NODE_ENV === 'development') {
+            if (res.locals.NODE_ENV === 'development') {
                 console.log('User logged in:', user);
             }
             res.redirect('/');
