@@ -18,6 +18,7 @@ import { showAssignCategoriesForm, processAssignCategoriesForm } from './control
 import { showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 import { categoryValidation } from './controllers/categories.js';
 import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
+import { showLoginForm, processLoginForm, processLogout } from './controllers/users.js';
 // appartently you can put many function together if they are from the same file;
 
 
@@ -62,7 +63,10 @@ router.get('/category/:category_id', showCategoryDetailsPage);
 // hashing
 router.get('/register', showUserRegistrationForm);
 router.post('/register', processUserRegistrationForm);
-
+// login and logout
+router.get('/login', showLoginForm);
+router.post('/login', processLoginForm);
+router.get('/logout', processLogout);
 
 
 export default router;
