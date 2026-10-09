@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
-import { createUser } from '../models/users';
+import { createUser } from '../models/users.js';
 
 const showUserRegistrationForm = (req, res) => { 
     res.render('register', { title: 'Register' });
 };
 
-const processUserRegistrationForm = async () => { 
+const processUserRegistrationForm = async (req, res) => { 
     const { name, email, password } = req.body;
 
     try {
@@ -22,7 +22,7 @@ const processUserRegistrationForm = async () => {
     } catch (error) {
         console.error('Error regoistering user:', error);
         req.flash('error', 'An error occurred during registration. Please try again.');
-        res.redirct('/register');
+        res.redirect('/register');
     }
 };
 
