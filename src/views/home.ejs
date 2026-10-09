@@ -10,7 +10,7 @@
             their community.</p>
 
         <img class="main-logo" src="images/cse340-service-network.png" alt="CSE 340 Service Network Logo">
-        <% of (isLoggedIn) { %>
+        <% if (isLoggedIn) { %>
         <p><a href="/dashboard">My Dashboard</a></p>
         <% } %>
     </main>
