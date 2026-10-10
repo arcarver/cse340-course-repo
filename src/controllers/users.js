@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import { createUser } from '../models/users.js';
 import { authenticateUser } from '../models/users.js';
 import { showHomePage } from './index.js';
+import { getAllUsers } from '../models/users.js';
 
 const showUserRegistrationForm = (req, res) => { 
     res.render('register', { title: 'Register' });
@@ -100,11 +101,21 @@ const requireRole = (role) => {
         // Check if role matches
         if (req.session.user.role_name !== role) {
             req.flash('error', 'You do not have permission to access this page.');
-            return req.redirect('/');
+            return res.redirect('/');
         }
         // user has reqired role
         next();
     };
 };
 
-export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole };
+const showCurrentUsers = async (req, res, next) => {
+   
+    const userList = await getAllUsers();
+      
+    res.render('users', {
+        title: 'Current Users',
+        users: userList
+    });
+};
+
+export { showUserRegistrationForm, processUserRegistrationForm, showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole, showCurrentUsers };

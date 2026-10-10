@@ -18,7 +18,8 @@ import { showAssignCategoriesForm, processAssignCategoriesForm } from './control
 import { showEditProjectForm, processEditProjectForm } from './controllers/projects.js';
 import { categoryValidation } from './controllers/categories.js';
 import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
-import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard } from './controllers/users.js';
+import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole } from './controllers/users.js';
+import { showCurrentUsers } from './controllers/users.js';
 // appartently you can put many function together if they are from the same file;
 
 
@@ -36,28 +37,28 @@ router.get('/project/:project_id', showProjectDetailsPage);
 // Route for category details page
 router.get('/category/:category_id', showCategoryDetailsPage);
 // Route for new organization page
-router.get('/new-organization', showNewOrganizationForm);
+router.get('/new-organization', requireRole('admin'), showNewOrganizationForm);
 // Route to handle new organization form submission
-router.post('/new-organization', organizationValidation, processNewOrganizationForm);
+router.post('/new-organization', requireRole('admin'), organizationValidation, processNewOrganizationForm);
 // error-handling routes
 router.get('/test-error', testErrorPage);
 // edit organization route
-router.get('/edit-organization/:organization_id', showEditOrganizationForm);
-router.post('/edit-organization/:organization_id', organizationValidation, processEditOrganizationForm);
-router.get('/new-project', showNewProjectForm);
-router.post('/new-project', projectValidation, processNewProjectForm);
+router.get('/edit-organization/:organization_id', requireRole('admin'), showEditOrganizationForm);
+router.post('/edit-organization/:organization_id', requireRole('admin'), organizationValidation, processEditOrganizationForm);
+router.get('/new-project', requireRole('admin'), showNewProjectForm);
+router.post('/new-project', requireRole('admin'), projectValidation, processNewProjectForm);
 // handle the assign cattegorie to projects
-router.get('/assign-categories/:project_id', showAssignCategoriesForm);
-router.post('/assign-categories/:project_id', processAssignCategoriesForm);
+router.get('/assign-categories/:project_id', requireRole('admin'), showAssignCategoriesForm);
+router.post('/assign-categories/:project_id', requireRole('admin'), processAssignCategoriesForm);
 //edit projects
-router.get('/edit-project/:project_id', showEditProjectForm);
-router.post('/edit-project/:project_id', projectValidation, processEditProjectForm);   
+router.get('/edit-project/:project_id', requireRole('admin'), showEditProjectForm);
+router.post('/edit-project/:project_id', requireRole('admin'), projectValidation, processEditProjectForm);   
 // new categories
-router.get('/new-category', showNewCategoryForm);
-router.post('/new-category', categoryValidation, processNewCategoryForm);
+router.get('/new-category', requireRole('admin'), showNewCategoryForm);
+router.post('/new-category', requireRole('admin'), categoryValidation, processNewCategoryForm);
 // edit categories
-router.get('/edit-category/:category_id', showEditCategoryForm);
-router.post('/edit-category/:category_id', categoryValidation, processEditCategoryForm);
+router.get('/edit-category/:category_id', requireRole('admin'), showEditCategoryForm);
+router.post('/edit-category/:category_id', requireRole('admin'), categoryValidation, processEditCategoryForm);
 
 router.get('/category/:category_id', showCategoryDetailsPage);
 // hashing
@@ -69,6 +70,8 @@ router.post('/login', processLoginForm);
 router.get('/logout', processLogout);
 // dashboard stuff
 router.get('/dashboard', requireLogin, showDashboard);
+// User page
+router.get('/users', requireRole('admin'), showCurrentUsers);
 
 
 export default router;

@@ -60,4 +60,13 @@ const authenticateUser = async (email, password) => {
     }
 }
 
-export { createUser, authenticateUser }; 
+const getAllUsers = async () => {
+    const query = `
+    SELECT u.name, r.role_name, u.email
+    FROM users u
+    INNER JOIN roles r ON r.role_id = u.role_id;
+    `;
+    const data = await db.query(query)
+    return data.rows
+ };
+export { createUser, authenticateUser, getAllUsers }; 

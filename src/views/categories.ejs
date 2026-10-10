@@ -10,6 +10,8 @@
                 <a href="/category/<%= category.category_id %>"><strong><%= category.category_name%></strong></a></li>
                 <% }); %>           
         </ul>
+        <% if (user && user.role_name==='admin' ) { %>
         <p><a href="/new-category">Add a new category</a></p>
+        <% } %>
     </main>
     <%- include('partials/footer') %>

@@ -1,0 +1,18 @@
+<%- include('partials/header') %>
+    <main>
+        <h1>
+            <%= title %>
+        </h1>
+        <h2>
+            Website Users
+        </h2>       
+            
+            <ul class="content-grid">
+                <% users.forEach(user => { %>
+                    <li class="grid-card">
+                        <%= user.name%> <%= user.email %>  <%= user.role_name%>
+                    </li>
+                    <% }) %>                       
+            </ul>
+    </main>
+    <%- include('partials/footer') %>
