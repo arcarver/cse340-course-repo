@@ -3,6 +3,7 @@ import { createUser } from '../models/users.js';
 import { authenticateUser } from '../models/users.js';
 import { showHomePage } from './index.js';
 import { getAllUsers } from '../models/users.js';
+import { isVolunteer } from '../models/volunteers.js';
 
 const showUserRegistrationForm = (req, res) => { 
     res.render('register', { title: 'Register' });
@@ -79,7 +80,9 @@ const showDashboard = (req, res) => {
     res.render('dashboard', {
         title: 'Dashboard',
         name: user.name,
-        email: user.email
+        email: user.email,
+        user: user,
+        volunteer: []
     });
 };
 // midleware factory checks specific role

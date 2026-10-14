@@ -18,13 +18,27 @@
                 
                 </a>
                 </p>
-                <% if (user && user.role_name==='admin' ) { %>
-                    <p>
+                <% if (user) { %>
+                    <% if (!isVolunteer(user_id, title_id)) {%>
+                    <form action="/" method="post" class="volunteer">
                         <!-- link to volunteer -->
-                        <a href="/assign-categories/<%= project_id %>">Edit Categories</a>
-                        <!-- <a href="/assign-categories/<%= project.project_id || projectDetails.project_id || project_id || 'NO_ID_FOUND' %>">Edit -->
-                        </a>
-                    </p>
+                         <input type="hidden" name="project_id" value="<%= project.project_id %>">
+                        <button type="submit" class="button_volunteer">Sign up to volunteer</button>  
+                    </form>
+                    <% } else { %>
+                    
+                    
+                        <form action="/" method="post" class="volunteer">
+                            <input type="hidden" name="project_id" value="<%= project.project_id %>">
+                            <button type="submit" class="button_volunteer">You are volunteering for this project</button>
+                        </form>
+                        <form action="/" method="post" class="volunteer">
+                            <!-- link to volunteer -->
+                            <input type="hidden" name="project_id" value="<%= project.project_id %>">
+                            <button type="submit" class="button_remove_volunteer">Unsign up to volunteer</button>
+                        
+                        </form>
+                  <%}%>  
                     <% } %>
                 <h5>Project Categories:</h5>
                 <% categories.forEach(function(cat) {%>
@@ -35,14 +49,14 @@
             <% if (user && user.role_name==='admin' ) { %>
                     <p>
                 <a href="/assign-categories/<%= project_id %>">Edit Categories</a>
-                <!-- <a href="/assign-categories/<%= project.project_id || projectDetails.project_id || project_id || 'NO_ID_FOUND' %>">Edit -->
-                    </a></p>
+                
+                    </p>
                     <% } %>
                     <% if (user && user.role_name==='admin' ) { %>
                     
                     <p>    <a href="/edit-project/<%= project_id %>">Edit Project</a>
-                    <!-- <a href="/edit-project/<%= project.project_id || projectDetails.project_id || project_id || 'NO_ID_FOUND' %>">Edit -->
-                    </a></p>
+                    
+                   </p>
                     <% } %>
            
     </main>
