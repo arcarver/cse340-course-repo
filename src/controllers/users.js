@@ -3,7 +3,7 @@ import { createUser } from '../models/users.js';
 import { authenticateUser } from '../models/users.js';
 import { showHomePage } from './index.js';
 import { getAllUsers } from '../models/users.js';
-import { getAllProjects, isVolunteer } from '../models/volunteers.js';
+import { getAllProjects } from '../models/volunteers.js';
 
 const showUserRegistrationForm = (req, res) => { 
     res.render('register', { title: 'Register' });

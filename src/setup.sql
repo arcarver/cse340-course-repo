@@ -136,4 +136,3 @@ CREATE TABLE volunteers (
 	FOREIGN KEY (user_id) REFERENCES users (user_id),
 	FOREIGN KEY (project_id) REFERENCES  project (project_id)
 );
-SELECT * FROM roles;

@@ -1,5 +1,5 @@
 // import 
-import { getAllProjects, updateProject } from "../models/projects.js";
+import { updateProject } from "../models/projects.js";
 import { getUpcomingProjects } from "../models/projects.js";
 import { getProjectDetails } from "../models/projects.js";
 import { getAllCategoriesForProject } from "../models/categories.js";

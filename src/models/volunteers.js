@@ -1,4 +1,3 @@
-import { checkIfVolunteer } from '../controllers/volunteers.js';
 import db from './db.js';
 
 
@@ -26,11 +25,10 @@ const removeVolunteer = async (user_id, project_id, title) => {
     `;
     const result = await db.query(query, [user_id, project_id]);
     if (result.rows.length === 0) {
-        throw new Error(`You are no longer signed up to help with ${title}`);
+        
+        return null;
     }
-    // if (process.env.ENABLE_SQL_LOGGING === 'true') {
-    //     console.log('You are still signed up to volunteered for', title);
-    // }
+   
     return result.rows[0]
 }
 
