@@ -1,63 +1,54 @@
 <%- include('partials/header') %>
  <main> 
     <h1>
-            <%= project.title || "No Title Found" %>
-        </h1>
-        <p>
-            <%= project.description || "No Description" %>
-        </p>
-        <h3><%= new Date(project.date).toLocaleDateString('en-US', {
+        <%= project.title || "No Title Found" %>
+    </h1>
+    <p>
+        <%= project.description || "No Description" %>
+    </p>
+    <h3><%= new Date(project.date).toLocaleDateString('en-US', {
         weekday: 'short',
         month: 'short',
         day: 'numeric',
         year: 'numeric'})
         || "No Date" %></h3>
-        <h4><%= project.location || "No Location" %></h4>
+    <h4><%= project.location || "No Location" %></h4>
+    <p>
+        <a href="/organization/<%= project.organization_id %>"><%= project.organization_name  || "No Organization Name "%></a>
+    </p>
+    <% if (user) { %>
+        <% if (!hasVolunteered) {%>
+            <form action="/dashboard/signup" method="post" class="volunteer">
+                <!-- link to volunteer -->
+                    <input type="hidden" name="project_id" value="<%= project_id %>">
+                <button type="submit" class="button_volunteer">Sign up to volunteer</button>  
+            </form>
+        <% } else { %>                
+            <form  method="post" class="volunteer">
+                <input type="hidden" name="project_id" value="<%= project_id %>">
+                <button type="button" class="button_volunteer">You are volunteering for this project</button>
+            </form>
+            <form action="/dashboard/cancel" method="post" class="volunteer">              
+                <input type="hidden" name="project_id" value="<%= project_id %>">
+                <button type="submit" class="button_cancel_signup">Cancel your signup</button>                       
+            </form>
+        <%}%>  
+    <% } %>
+    <h5>Project Categories:</h5>
+    <% categories.forEach(function(cat) {%>
+        <a href="/category/<%= cat.category_id %>">
+                    <%= cat.category_name || "No Category Name " %>      
+        </a>
+    <%}); %>
+    <% if (user && user.role_name==='admin' ) { %>
         <p>
-                <a href="/organization/<%= project.organization_id %>">    <%= project.organization_name  || "No Organization Name "%>
-                
-                </a>
-                </p>
-                <% if (user) { %>
-                    <% if (!isVolunteer(user_id, title_id)) {%>
-                    <form action="/" method="post" class="volunteer">
-                        <!-- link to volunteer -->
-                         <input type="hidden" name="project_id" value="<%= project.project_id %>">
-                        <button type="submit" class="button_volunteer">Sign up to volunteer</button>  
-                    </form>
-                    <% } else { %>
-                    
-                    
-                        <form action="/" method="post" class="volunteer">
-                            <input type="hidden" name="project_id" value="<%= project.project_id %>">
-                            <button type="submit" class="button_volunteer">You are volunteering for this project</button>
-                        </form>
-                        <form action="/" method="post" class="volunteer">
-                            <!-- link to volunteer -->
-                            <input type="hidden" name="project_id" value="<%= project.project_id %>">
-                            <button type="submit" class="button_remove_volunteer">Unsign up to volunteer</button>
-                        
-                        </form>
-                  <%}%>  
-                    <% } %>
-                <h5>Project Categories:</h5>
-                <% categories.forEach(function(cat) {%>
-                    <a href="/category/<%= cat.category_id %>">
-                        <%= cat.category_name || "No Category Name " %>
-                    
-                    </a><%}); %>
-            <% if (user && user.role_name==='admin' ) { %>
-                    <p>
-                <a href="/assign-categories/<%= project_id %>">Edit Categories</a>
-                
-                    </p>
-                    <% } %>
-                    <% if (user && user.role_name==='admin' ) { %>
-                    
-                    <p>    <a href="/edit-project/<%= project_id %>">Edit Project</a>
-                    
-                   </p>
-                    <% } %>
-           
-    </main>
-    <%- include('partials/footer') %>
+        <a href="/assign-categories/<%= project_id %>">Edit Categories</a>                
+        </p>
+    <% } %>
+    <% if (user && user.role_name==='admin' ) { %>            
+        <p>    
+            <a href="/edit-project/<%= project_id %>">Edit Project</a>          
+        </p>
+    <% } %>         
+</main>
+<%- include('partials/footer') %>

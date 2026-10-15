@@ -20,8 +20,8 @@ import { categoryValidation } from './controllers/categories.js';
 import { showUserRegistrationForm, processUserRegistrationForm } from './controllers/users.js';
 import { showLoginForm, processLoginForm, processLogout, requireLogin, showDashboard, requireRole } from './controllers/users.js';
 import { showCurrentUsers } from './controllers/users.js';
-import { isVolunteer } from './models/volunteers.js';
-import { checkIfVolunteer } from './controllers/volunteers.js';
+import { addVolunteer, isVolunteer } from './models/volunteers.js';
+import { checkIfVolunteer, handleVolunteer, cancelSignup } from './controllers/volunteers.js';
 // appartently you can put many function together if they are from the same file;
 
 
@@ -75,7 +75,8 @@ router.get('/dashboard', requireLogin, showDashboard);
 // User page
 router.get('/users', requireRole('admin'), showCurrentUsers);
 // volunteer stuff
-router.get('/dashboard', requireLogin, checkIfVolunteer, showDashboard);
-
+router.get('/dashboard/signup', requireLogin, showDashboard);
+router.post('/dashboard/signup', requireLogin, handleVolunteer);
+router.post('/dashboard/cancel', requireLogin, cancelSignup )
 
 export default router;

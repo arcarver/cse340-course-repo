@@ -36,9 +36,9 @@ const removeVolunteer = async (user_id, project_id, title) => {
 
 const getAllProjects = async (user_id) => {
     const query = `
-    SELECT p.title, project_id
+    SELECT p.title, p.project_id
     FROM volunteers v
-    INNER JOIN projects p ON p.project_id = v.project_id
+    INNER JOIN project p ON p.project_id = v.project_id
     WHERE v.user_id = $1
     `;
     const data = await db.query(query, [user_id])

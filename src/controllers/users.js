@@ -3,7 +3,7 @@ import { createUser } from '../models/users.js';
 import { authenticateUser } from '../models/users.js';
 import { showHomePage } from './index.js';
 import { getAllUsers } from '../models/users.js';
-import { isVolunteer } from '../models/volunteers.js';
+import { getAllProjects, isVolunteer } from '../models/volunteers.js';
 
 const showUserRegistrationForm = (req, res) => { 
     res.render('register', { title: 'Register' });
@@ -75,14 +75,15 @@ const requireLogin = async (req, res, next) => {
     next();
 };
    
-const showDashboard = (req, res) => {
+const showDashboard = async (req, res) => {
     const user = req.session.user;
+    const userProjects = await getAllProjects(user.user_id);
     res.render('dashboard', {
         title: 'Dashboard',
         name: user.name,
         email: user.email,
         user: user,
-        volunteer: []
+        volunteer: userProjects
     });
 };
 // midleware factory checks specific role

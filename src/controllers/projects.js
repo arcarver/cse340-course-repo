@@ -6,6 +6,7 @@ import { getAllCategoriesForProject } from "../models/categories.js";
 import { createProject } from "../models/projects.js";
 import { getAllOrganizations } from "../models/organizations.js";
 import { body, validationResult } from "express-validator";
+import { isVolunteer } from "../models/volunteers.js";
 
 // Validation
 const projectValidation = [
@@ -59,7 +60,22 @@ const showProjectDetailsPage = async (req, res) => {
   console.log("categories are:", showCategories);
 
   const currentProject = projectDetails[0];
-  res.render('project.ejs', { project: currentProject, projectDetails: currentProject, project_id, project_id, title: 'Project Details', categories: showCategories });
+  const user = req.session.user;
+  let hasVolunteered = false;
+
+  if (user) {
+    hasVolunteered = await isVolunteer(user.user_id, project_id);
+  }
+
+  res.render('project.ejs', {
+    project: currentProject,
+    projectDetails: currentProject,
+    project_id: project_id,
+    title: 'Project Details',
+    categories: showCategories,
+    user: user,
+    hasVolunteered: hasVolunteered
+  });
   }
 
 const showNewProjectForm = async (req, res) => {

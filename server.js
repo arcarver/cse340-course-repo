@@ -47,6 +47,21 @@ app.use(session({
     cookie: { maxAge: 60 * 60 * 1000 } // Session expires after 1 hour of inactivity
 }));
 
+// Temporary auto log in
+
+app.use((req, res, next) => {
+    // Check if a session already exists; if not, create a mock user
+    if (!req.session.user) {
+        req.session.user = {
+            user_id: 11,                    // Make sure this ID exists in your DB!
+            name: "admin",
+            email: "admin@example.com",
+            role_name: "admin"             // Set to 'admin' so you can test admin links too!
+        };
+        console.log("🤖 Development Mode: Automatically logged in as Test Volunteer");
+    }
+    next();
+});
 // Use flash message middleware
 app.use(flash);
 
